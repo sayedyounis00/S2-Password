@@ -71,6 +71,14 @@ class _AddPasswordScreenState extends State<AddPasswordScreen> {
                       children: [
                         const CustomText(text: 'title'),
                         CustomTextFeild(
+                          validator: (value) {
+                            if (value==null||value.isEmpty) {
+                              return 'thisfeild is required';
+                            }
+                            if (value.length >= 10) {
+                              return 'only accept 10 characters';
+                            }
+                          },
                           hintText: 'Website/AppName',
                           onChange: (val) {
                             title = val;
