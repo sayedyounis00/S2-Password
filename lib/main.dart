@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:password_saver/constants.dart';
-import 'package:password_saver/cubit/cubit/add_password_cubit.dart';
+import 'package:password_saver/cubit/add_password_cubit/add_password_cubit.dart';
+import 'package:password_saver/cubit/show_password_cubit/show_password_cubit.dart';
+import 'package:password_saver/data/models/password_model.dart';
 import 'package:password_saver/presentation/Views/add_password_screen.dart';
 import 'package:password_saver/presentation/Views/password_dashboard.dart';
 
 void main() async {
   await Hive.initFlutter();
-  await Hive.openBox(kPasswordBox);
-  await Hive.initFlutter();
+    Hive.registerAdapter(PasswordModelAdapter());
+  await Hive.openBox<PasswordModel>(kPasswordBox);
 
   runApp(const MyApp());
 }
@@ -24,6 +26,9 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => AddPasswordCubit(),
+        ),
+        BlocProvider(
+          create: (context) => ShowPasswordCubit(),
         ),
       ],
       child: MaterialApp(
