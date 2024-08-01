@@ -1,6 +1,5 @@
 part of 'add_password_cubit.dart';
 
-@immutable
 sealed class AddPasswordState {}
 
 final class AddPasswordInitial extends AddPasswordState {}
