@@ -1,6 +1,5 @@
-import 'package:bloc/bloc.dart';
+import 'package:bloc/bloc.dart' ;
 import 'package:hive/hive.dart';
-import 'package:meta/meta.dart';
 import 'package:password_saver/constants.dart';
 import 'package:password_saver/data/models/password_model.dart';
 
