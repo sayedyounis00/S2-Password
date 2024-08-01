@@ -4,19 +4,19 @@ import 'package:password_saver/presentation/Views/add_password_screen.dart';
 import 'package:password_saver/presentation/widgets/custom_text_feild.dart';
 import 'package:password_saver/widgets/custom_counter_card.dart';
 import 'package:password_saver/widgets/custom_password_card.dart';
+
 class PasswordDashBoard extends StatefulWidget {
   const PasswordDashBoard({super.key});
-  static String id = 'PasswordDashboardPage';
+  static String id = 'PasswordDashboard';
 
   @override
   State<PasswordDashBoard> createState() => _PasswordDashBoardState();
 }
 
 class _PasswordDashBoardState extends State<PasswordDashBoard> {
-  int activeIndex = 1;
-
   @override
   Widget build(BuildContext context) {
+    int activeIndex = 1;
     return Scaffold(
       backgroundColor: Colors.white,
       bottomNavigationBar: CircleNavBar(
@@ -109,7 +109,11 @@ class _PasswordDashBoardState extends State<PasswordDashBoard> {
                   ),
                 ],
               ),
-              const CustomTextFeild(hintText: 'Search For Password..',topPadding: 10,prefixIcon:  Icon(Icons.search),),
+              const CustomTextFeild(
+                hintText: 'Search For Password..',
+                topPadding: 10,
+                prefixIcon: Icon(Icons.search),
+              ),
               ListView.builder(
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,

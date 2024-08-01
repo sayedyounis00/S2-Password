@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:password_saver/constants.dart';
+import 'package:password_saver/cubit/cubit/add_password_cubit.dart';
+import 'package:password_saver/data/models/password_model.dart';
 import 'package:password_saver/presentation/widgets/custom_text.dart';
 import 'package:password_saver/widgets/custom_add_data_feild.dart';
 import 'package:password_saver/widgets/custom_button.dart';
 
-class AddPasswordScreen extends StatelessWidget {
+class AddPasswordScreen extends StatefulWidget {
   const AddPasswordScreen({super.key});
   static String id = 'addPasswordPage';
+
+  @override
+  State<AddPasswordScreen> createState() => _AddPasswordScreenState();
+}
+
+class _AddPasswordScreenState extends State<AddPasswordScreen> {
+
 
   @override
   Widget build(BuildContext context) {
