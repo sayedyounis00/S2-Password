@@ -98,48 +98,50 @@ class _PasswordDashBoardState extends State<PasswordDashBoard> {
           ),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              const Row(
+      body: BlocBuilder<ShowPasswordCubit, ShowPasswordState>(
+        builder: (context, state) {
+          List<PasswordModel> notesList =
+              BlocProvider.of<ShowPasswordCubit>(context).notes;
+          return Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: SingleChildScrollView(
+              child: Column(
                 children: [
-                  CustomCounterCard(
-                    topText: '5',
-                    underText: 'Password Stroed',
+                   Row(
+                    children: [
+                       CustomCounterCard(
+                        topText: '${notesList.length}',
+                        underText: 'Password Stroed',
+                      ),
+                      const SizedBox(
+                        width: 20,
+                      ),
+                      const CustomCounterCard(
+                        topText: '0',
+                        underText: 'password Compromised',
+                      ),
+                    ],
                   ),
-                  SizedBox(
-                    width: 20,
+                  const CustomTextFeild(
+                    hintText: 'Search For Password..',
+                    topPadding: 10,
+                    prefixIcon: Icon(Icons.search),
                   ),
-                  CustomCounterCard(
-                    topText: '0',
-                    underText: 'password Compromised',
-                  ),
-                ],
-              ),
-              const CustomTextFeild(
-                hintText: 'Search For Password..',
-                topPadding: 10,
-                prefixIcon: Icon(Icons.search),
-              ),
-              BlocBuilder<ShowPasswordCubit, ShowPasswordState>(
-                builder: (context, state) {
-                  List<PasswordModel> notesList =
-                      BlocProvider.of<ShowPasswordCubit>(context).notes;
-                  return ListView.builder(
+                  ListView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemCount: notesList.length,
                     itemBuilder: (context, index) {
-                      return  CustomPasswordCard(password: notesList[index],);
+                      return CustomPasswordCard(
+                        password: notesList[index],
+                      );
                     },
-                  );
-                },
+                  )
+                ],
               ),
-            ],
-          ),
-        ),
+            ),
+          );
+        },
       ),
     );
   }

@@ -26,6 +26,7 @@ class CustomCounterCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CustomText(
+              maxLines: 2,
               text: topText,
               fontSize: 60,
               fontWeight: FontWeight.bold,
@@ -34,6 +35,7 @@ class CustomCounterCard extends StatelessWidget {
             SizedBox(
               width: 110,
               child: CustomText(
+                maxLines: 2,
                 text: underText,
               ),
             )

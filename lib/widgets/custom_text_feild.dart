@@ -6,20 +6,20 @@ class CustomTextFeild extends StatelessWidget {
     required this.hintText,
     this.topPadding,
     this.prefixIcon,
-    this.onChange,
+    this.onChange, this.validator,
   });
   final String hintText;
   final double? topPadding;
   final Widget? prefixIcon;
   final Function(String?)? onChange;
-
+  final String? Function(String?)?  validator;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(top: topPadding ?? 0,bottom: 10
       ),
       child: TextFormField(
-        validator:(value) {
+        validator:validator??(value) {
           if (value == null || value.isEmpty) {
             return 'this feild is required';
           } else {

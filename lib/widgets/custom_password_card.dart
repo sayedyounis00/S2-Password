@@ -27,7 +27,7 @@ class CustomPasswordCard extends StatelessWidget {
             padding: const EdgeInsets.only(left: 30.0),
             child: CustomText(
               text: password.title,
-              fontSize: 30,
+              fontSize: 25,
               fontWeight: FontWeight.bold,
             ),
           ),
