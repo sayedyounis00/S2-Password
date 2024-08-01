@@ -31,6 +31,7 @@ class CustomAddDataFeild extends StatelessWidget{
           CustomTextFeild(
             hintText: feildText,
             onChange: onChange,
+            // validator:  ,
           ),
         ],
       ),

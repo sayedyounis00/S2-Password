@@ -4,10 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:password_saver/constants.dart';
 import 'package:password_saver/cubit/cubit/add_password_cubit.dart';
-import 'package:password_saver/data/models/password_model.dart';
 import 'package:password_saver/widgets/custom_text.dart';
-import 'package:password_saver/widgets/custom_add_data_feild.dart';
 import 'package:password_saver/widgets/custom_button.dart';
+import 'package:password_saver/widgets/custom_text_feild.dart';
 
 class AddPasswordScreen extends StatefulWidget {
   const AddPasswordScreen({super.key});
@@ -19,7 +18,7 @@ class AddPasswordScreen extends StatefulWidget {
 
 class _AddPasswordScreenState extends State<AddPasswordScreen> {
   String? title, pass, email, url, userName;
-
+ final _formKey = GlobalKey<FormState>();
   @override
   void initState() {
     super.initState();
@@ -59,41 +58,83 @@ class _AddPasswordScreenState extends State<AddPasswordScreen> {
                       ),
                     ],
                   ),
-                  CustomAddDataFeild(
-                    text: 'title',
-                    feildText: 'Website/AppName',
-                    onChange: (val) {
-                      title = val;
-                      log(title!);
-                    },
-                  ),
-                  CustomAddDataFeild(
-                    text: 'Url',
-                    feildText: 'Website Url',
-                    onChange: (val) {
-                      url = val;
-                    },
-                  ),
-                  CustomAddDataFeild(
-                    text: 'email',
-                    feildText: 'example@mail.com',
-                    onChange: (val) {
-                      email = val;
-                    },
-                  ),
-                  CustomAddDataFeild(
-                    text: 'USERNAME',
-                    feildText: 'user name',
-                    onChange: (val) {
-                      userName = val;
-                    },
-                  ),
-                  CustomAddDataFeild(
-                    text: 'password',
-                    feildText: 'Password',
-                    onChange: (val) {
-                      pass = val;
-                    },
+                  Form(
+                    key: _formKey,
+                    child: Column(
+                      children: [
+                        const CustomText(text: 'title'),
+                        CustomTextFeild(
+                          hintText: 'Website/AppName',
+                          onChange: (val) {
+                            title = val;
+                            log(title!);
+                          },
+                        ),
+                        // CustomAddDataFeild(
+                        //   text: 'Url',
+                        //   feildText: 'Website Url',
+                        //   onChange: (val) {
+                        //     url = val;
+                        //   },
+                        // ),
+                        const CustomText(text: 'Url'),
+                        CustomTextFeild(
+                          hintText: 'Website Url',
+                          onChange: (val) {
+                            title = val;
+                            log(title!);
+                          },
+                        ),
+
+                        // CustomAddDataFeild(
+                        //   text: 'email',
+                        //   feildText: 'example@mail.com',
+                        //   onChange: (val) {
+                        //     email = val;
+                        //   },
+                        // ),
+                        const CustomText(text: 'email'),
+                        CustomTextFeild(
+                          hintText: 'example@mail.com',
+                          onChange: (val) {
+                            email = val;
+                            log(email!);
+                          },
+                        ),
+
+                        // CustomAddDataFeild(
+                        //   text: 'USERNAME',
+                        //   feildText: 'user name',
+                        //   onChange: (val) {
+                        //     userName = val;
+                        //   },
+                        // ),
+                        const CustomText(text: 'user_name'),
+                        CustomTextFeild(
+                          hintText: 'user_name',
+                          onChange: (val) {
+                            userName = val;
+                            log(userName!);
+                          },
+                        ),
+
+                        // CustomAddDataFeild(
+                        //   text: 'password',
+                        //   feildText: 'Password',
+                        //   onChange: (val) {
+                        //     pass = val;
+                        //   },
+                        // ),
+                        const CustomText(text: 'password'),
+                        CustomTextFeild(
+                          hintText: 'password',
+                          onChange: (val) {
+                            pass = val;
+                            log(title!);
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -121,16 +162,14 @@ class _AddPasswordScreenState extends State<AddPasswordScreen> {
                   CustomButton(
                     text: 'ADD PASSWORD',
                     onTaP: () {
-                      PasswordModel passwordModel = PasswordModel(
-                        title: title!,
-                        password: pass!,
-                        email: email!,
-                        userName: userName!,
-                        url: url,
-                      );
-                      BlocProvider.of<AddPasswordCubit>(context);
-                      log(passwordModel.title);
-                      log(passwordModel.password);
+                      setState(() {
+                        
+                      });
+                      if (_formKey.currentState!.validate()) {
+                        return 'this feild is required';
+                      } else {
+                        return null;
+                      }
                     },
                   ),
                 ],

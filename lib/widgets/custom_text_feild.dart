@@ -5,7 +5,8 @@ class CustomTextFeild extends StatelessWidget {
     super.key,
     required this.hintText,
     this.topPadding,
-    this.prefixIcon, this.onChange,
+    this.prefixIcon,
+    this.onChange,
   });
   final String hintText;
   final double? topPadding;
@@ -15,8 +16,16 @@ class CustomTextFeild extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: topPadding ?? 0),
-      child: TextField(
+      padding: EdgeInsets.only(top: topPadding ?? 0,bottom: 10
+      ),
+      child: TextFormField(
+        validator:(value) {
+          if (value == null || value.isEmpty) {
+            return 'this feild is required';
+          } else {
+            return null;
+          }
+        },
         onChanged: onChange,
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.all(10),
