@@ -9,7 +9,7 @@ part 'add_password_state.dart';
 class AddPasswordCubit extends Cubit<AddPasswordState> {
   AddPasswordCubit() : super(AddPasswordInitial());
 
-  addPassword(data) async {
+  addPassword(PasswordModel data) async {
     emit(AddPasswordLoading());
     try {
       var passBox = await Hive.openBox(kPasswordBox);
