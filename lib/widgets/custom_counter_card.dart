@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:password_saver/constants.dart';
-import 'package:password_saver/presentation/widgets/custom_text.dart';
+import 'package:password_saver/widgets/custom_text.dart';
 
 class CustomCounterCard extends StatelessWidget {
   const CustomCounterCard({

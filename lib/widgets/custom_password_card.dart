@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:password_saver/presentation/widgets/custom_text.dart';
+import 'package:password_saver/widgets/custom_text.dart';
 
 class CustomPasswordCard extends StatelessWidget {
   const CustomPasswordCard({

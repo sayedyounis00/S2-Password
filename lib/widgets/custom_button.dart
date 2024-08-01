@@ -1,17 +1,18 @@
-
 import 'package:flutter/material.dart';
-import 'package:password_saver/presentation/widgets/custom_text.dart';
+import 'package:password_saver/widgets/custom_text.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({
-    super.key,
+    super.key, required this.text, this.onTaP,
   });
+  final String text;
+  final Function()? onTaP;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
-      onTap: () {},
+      onTap:onTaP,
       child: Container(
         alignment: Alignment.center,
         margin: const EdgeInsets.only(top: 100),
@@ -20,8 +21,8 @@ class CustomButton extends StatelessWidget {
         decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(10)),
             color: Colors.teal),
-        child: const CustomText(
-          text: 'ADD PASSWORD',
+        child:  CustomText(
+          text: text,
           textColor: Colors.white,
         ),
       ),
