@@ -1,5 +1,8 @@
 import 'package:circle_nav_bar/circle_nav_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:password_saver/cubit/show_password_cubit/show_password_cubit.dart';
+import 'package:password_saver/data/models/password_model.dart';
 import 'package:password_saver/presentation/Views/add_password_screen.dart';
 import 'package:password_saver/widgets/custom_counter_card.dart';
 import 'package:password_saver/widgets/custom_password_card.dart';
@@ -14,6 +17,12 @@ class PasswordDashBoard extends StatefulWidget {
 }
 
 class _PasswordDashBoardState extends State<PasswordDashBoard> {
+  @override
+  void initState() {
+    super.initState();
+    BlocProvider.of<ShowPasswordCubit>(context).showpassword();
+  }
+
   @override
   Widget build(BuildContext context) {
     int activeIndex = 1;
@@ -114,12 +123,18 @@ class _PasswordDashBoardState extends State<PasswordDashBoard> {
                 topPadding: 10,
                 prefixIcon: Icon(Icons.search),
               ),
-              ListView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return const CustomPasswordCard();
+              BlocBuilder<ShowPasswordCubit, ShowPasswordState>(
+                builder: (context, state) {
+                  List<PasswordModel> notesList =
+                      BlocProvider.of<ShowPasswordCubit>(context).notes;
+                  return ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: notesList.length,
+                    itemBuilder: (context, index) {
+                      return  CustomPasswordCard(password: notesList[index],);
+                    },
+                  );
                 },
               ),
             ],

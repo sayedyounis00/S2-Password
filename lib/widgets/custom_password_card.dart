@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:password_saver/data/models/password_model.dart';
 import 'package:password_saver/widgets/custom_text.dart';
 
 class CustomPasswordCard extends StatelessWidget {
   const CustomPasswordCard({
-    super.key,
+    super.key, required this.password,
   });
+  final PasswordModel password;
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +23,10 @@ class CustomPasswordCard extends StatelessWidget {
             width: 50,
             child: Image.asset('assets/images/facebook.png'),
           ),
-          const Padding(
-            padding: EdgeInsets.only(left: 30.0),
+           Padding(
+            padding: const EdgeInsets.only(left: 30.0),
             child: CustomText(
-              text: 'Facebook',
+              text: password.title,
               fontSize: 30,
               fontWeight: FontWeight.bold,
             ),
@@ -32,11 +34,12 @@ class CustomPasswordCard extends StatelessWidget {
           const Spacer(
             flex: 1,
           ),
-           IconButton(
+          IconButton(
             icon: const Icon(
               Icons.copy,
               color: Colors.teal,
-            ), onPressed: () {  },
+            ),
+            onPressed: () {},
           )
         ],
       ),
