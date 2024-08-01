@@ -70,13 +70,6 @@ class _AddPasswordScreenState extends State<AddPasswordScreen> {
                             log(title!);
                           },
                         ),
-                        // CustomAddDataFeild(
-                        //   text: 'Url',
-                        //   feildText: 'Website Url',
-                        //   onChange: (val) {
-                        //     url = val;
-                        //   },
-                        // ),
                         const CustomText(text: 'Url'),
                         CustomTextFeild(
                           hintText: 'Website Url',
@@ -85,14 +78,6 @@ class _AddPasswordScreenState extends State<AddPasswordScreen> {
                             log(title!);
                           },
                         ),
-
-                        // CustomAddDataFeild(
-                        //   text: 'email',
-                        //   feildText: 'example@mail.com',
-                        //   onChange: (val) {
-                        //     email = val;
-                        //   },
-                        // ),
                         const CustomText(text: 'email'),
                         CustomTextFeild(
                           hintText: 'example@mail.com',
@@ -101,14 +86,6 @@ class _AddPasswordScreenState extends State<AddPasswordScreen> {
                             log(email!);
                           },
                         ),
-
-                        // CustomAddDataFeild(
-                        //   text: 'USERNAME',
-                        //   feildText: 'user name',
-                        //   onChange: (val) {
-                        //     userName = val;
-                        //   },
-                        // ),
                         const CustomText(text: 'user_name'),
                         CustomTextFeild(
                           hintText: 'user_name',
@@ -118,13 +95,6 @@ class _AddPasswordScreenState extends State<AddPasswordScreen> {
                           },
                         ),
 
-                        // CustomAddDataFeild(
-                        //   text: 'password',
-                        //   feildText: 'Password',
-                        //   onChange: (val) {
-                        //     pass = val;
-                        //   },
-                        // ),
                         const CustomText(text: 'password'),
                         CustomTextFeild(
                           hintText: 'password',
