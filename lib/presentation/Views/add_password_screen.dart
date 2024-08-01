@@ -3,7 +3,9 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:password_saver/constants.dart';
-import 'package:password_saver/cubit/cubit/add_password_cubit.dart';
+import 'package:password_saver/cubit/add_password_cubit/add_password_cubit.dart';
+import 'package:password_saver/cubit/show_password_cubit/show_password_cubit.dart';
+import 'package:password_saver/data/models/password_model.dart';
 import 'package:password_saver/widgets/custom_text.dart';
 import 'package:password_saver/widgets/custom_button.dart';
 import 'package:password_saver/widgets/custom_text_feild.dart';
@@ -18,11 +20,13 @@ class AddPasswordScreen extends StatefulWidget {
 
 class _AddPasswordScreenState extends State<AddPasswordScreen> {
   String? title, pass, email, url, userName;
- final _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
+
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<AddPasswordCubit>(context);
+    BlocProvider.of<AddPasswordCubit>(context).addPassword;
+    // BlocProvider.of<ShowPasswordCubit>(context);
   }
 
   @override
@@ -43,7 +47,10 @@ class _AddPasswordScreenState extends State<AddPasswordScreen> {
           padding: const EdgeInsets.all(40),
           child: BlocConsumer<AddPasswordCubit, AddPasswordState>(
             listener: (context, state) {
-              // TODO: implement listener
+              if (state is AddPasswordSuccess) {
+                BlocProvider.of<ShowPasswordCubit>(context).showpassword();
+                Navigator.pop(context);
+              }
             },
             builder: (context, state) {
               return Column(
@@ -67,15 +74,15 @@ class _AddPasswordScreenState extends State<AddPasswordScreen> {
                           hintText: 'Website/AppName',
                           onChange: (val) {
                             title = val;
-                            log(title!);
+                            // log(title!);
                           },
                         ),
                         const CustomText(text: 'Url'),
                         CustomTextFeild(
                           hintText: 'Website Url',
                           onChange: (val) {
-                            title = val;
-                            log(title!);
+                            url = val;
+                            // log(title!);
                           },
                         ),
                         const CustomText(text: 'email'),
@@ -83,7 +90,7 @@ class _AddPasswordScreenState extends State<AddPasswordScreen> {
                           hintText: 'example@mail.com',
                           onChange: (val) {
                             email = val;
-                            log(email!);
+                            // log(email!);
                           },
                         ),
                         const CustomText(text: 'user_name'),
@@ -91,16 +98,15 @@ class _AddPasswordScreenState extends State<AddPasswordScreen> {
                           hintText: 'user_name',
                           onChange: (val) {
                             userName = val;
-                            log(userName!);
+                            // log(userName!);
                           },
                         ),
-
                         const CustomText(text: 'password'),
                         CustomTextFeild(
                           hintText: 'password',
                           onChange: (val) {
                             pass = val;
-                            log(title!);
+                            // log(title!);
                           },
                         ),
                       ],
@@ -132,11 +138,16 @@ class _AddPasswordScreenState extends State<AddPasswordScreen> {
                   CustomButton(
                     text: 'ADD PASSWORD',
                     onTaP: () {
-                      setState(() {
-                        
-                      });
                       if (_formKey.currentState!.validate()) {
-                        return 'this feild is required';
+                        BlocProvider.of<AddPasswordCubit>(context)
+                            .addPassword(PasswordModel(
+                          title: title!,
+                          password: pass!,
+                          email: email!,
+                          userName: userName!,
+                          url: url,
+                        ));
+                        BlocProvider.of<AddPasswordCubit>(context);
                       } else {
                         return null;
                       }
