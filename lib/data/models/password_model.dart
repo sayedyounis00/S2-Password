@@ -1,21 +1,29 @@
-
 import 'package:hive/hive.dart';
+import 'package:password_saver/data/models/image_model.dart';
 
-part'password_model.g.dart';
+part 'password_model.g.dart';
 
 @HiveType(typeId: 0)
-class PasswordModel extends HiveObject{
+class PasswordModel extends HiveObject {
   @HiveField(0)
-  final String title;
-    @HiveField(1)
-    final String? url;
-    @HiveField(2)
-  final String email;
-    @HiveField(3)
-  final String userName;
+  String title;
+  @HiveField(1)
+  String? url;
+  @HiveField(2)
+  String email;
+  @HiveField(3)
+  String userName;
   @HiveField(4)
-    final String password;
+  String password;
+  @HiveField(5)
+  ImageModel? image;
 
-
-  PasswordModel( {required this.title, required this.password, required this.email, required this.userName, this.url,});
+  PasswordModel({
+    required this.title,
+    required this.password,
+    required this.email,
+    required this.userName,
+    this.url,
+    this.image,
+  });
 }

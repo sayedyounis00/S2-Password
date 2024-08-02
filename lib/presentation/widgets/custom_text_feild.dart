@@ -19,13 +19,7 @@ class CustomTextFeild extends StatelessWidget {
       padding: EdgeInsets.only(top: topPadding ?? 0,bottom: 10
       ),
       child: TextFormField(
-        validator:validator??(value) {
-          if (value == null || value.isEmpty) {
-            return 'this feild is required';
-          } else {
-            return null;
-          }
-        },
+        validator:validator,
         onChanged: onChange,
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.all(10),
