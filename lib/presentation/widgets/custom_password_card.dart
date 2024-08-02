@@ -1,3 +1,4 @@
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -81,7 +82,10 @@ class _CustomPasswordCardState extends State<CustomPasswordCard> {
                 SizedBox(
                   height: 50,
                   width: 50,
-                  child: Image.memory(widget.password.image!.imageData,fit: BoxFit.cover,),
+                  child: Image.memory(
+                    widget.password.image!.imageData,
+                    fit: BoxFit.cover,
+                  ),
                   //// Image.asset('assets/images/facebook.png'),
                 ),
                 Padding(
@@ -104,6 +108,7 @@ class _CustomPasswordCardState extends State<CustomPasswordCard> {
                   onPressed: () {
                     Clipboard.setData(
                         ClipboardData(text: widget.password.password));
+                    log(widget.password.password);
                   },
                 )
               ],
@@ -113,5 +118,4 @@ class _CustomPasswordCardState extends State<CustomPasswordCard> {
       },
     );
   }
-
 }
