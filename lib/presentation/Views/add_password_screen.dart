@@ -64,172 +64,183 @@ class _AddPasswordScreenState extends State<AddPasswordScreen> {
               if (state is AddPasswordFailure) {}
             },
             builder: (context, state) {
-              return Column(
-                children: [
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      CustomText(
-                        text: 'ADD NEW',
-                        fontSize: 50,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ],
-                  ),
-                  Form(
-                    key: _formKey,
-                    child: Column(
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        const CustomText(text: 'title'),
-                        CustomTextFeild(
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'thisfeild is required';
-                            }
-                            if (value.length >= 10) {
-                              return 'only accept 10 characters';
-                            } else {
-                              return null;
-                            }
-                          },
-                          hintText: 'Website/AppName',
-                          onChange: (val) {
-                            title = val;
-                            // log(title!);
-                          },
-                        ),
-                        const CustomText(text: 'Url'),
-                        CustomTextFeild(
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'this feild is required';
-                            } else {
-                              return null;
-                            }
-                          },
-                          hintText: 'Website Url',
-                          onChange: (val) {
-                            url = val;
-                            // log(title!);
-                          },
-                        ),
-                        const CustomText(text: 'email'),
-                        CustomTextFeild(
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'this feild is required';
-                            } else {
-                              return null;
-                            }
-                          },
-                          hintText: 'example@mail.com',
-                          onChange: (val) {
-                            email = val;
-                            // log(email!);
-                          },
-                        ),
-                        const CustomText(text: 'user_name'),
-                        CustomTextFeild(
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'this feild is required';
-                            } else {
-                              return null;
-                            }
-                          },
-                          hintText: 'user_name',
-                          onChange: (val) {
-                            userName = val;
-                            // log(userName!);
-                          },
-                        ),
-                        const CustomText(text: 'password'),
-                        CustomTextFeild(
-                          controller: passControler,
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'this feild is required';
-                            } else {
-                              return null;
-                            }
-                          },
-                          hintText: 'password',
-                          onChange: (val) {
-                            pass = val;
-                            // log(title!);
-                          },
+                        CustomText(
+                          text: 'ADD NEW',
+                          fontSize: 50,
+                          fontWeight: FontWeight.bold,
                         ),
                       ],
                     ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      GestureDetector(
-                        behavior: HitTestBehavior.translucent,
-                        onTap: () {
-                          passControler.text = generatePassword();
-                        },
-                        child: Container(
-                          alignment: Alignment.center,
-                          height: 40,
-                          width: 150,
-                          decoration: BoxDecoration(
-                              border:
-                                  Border.all(color: kPrimaryColor, width: 2),
-                              borderRadius: BorderRadius.circular(10)),
-                          child: const CustomText(
-                            text: 'GENRATE NEW',
-                            fontWeight: FontWeight.bold,
-                            textColor: kPrimaryColor,
+                    Form(
+                      key: _formKey,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const CustomText(text: 'title'),
+                          CustomTextFeild(
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'thisfeild is required';
+                              }
+                              if (value.length >= 10) {
+                                return 'only accept 10 characters';
+                              } else {
+                                return null;
+                              }
+                            },
+                            hintText: 'Website/AppName',
+                            onChange: (val) {
+                              title = val;
+                              // log(title!);
+                            },
+                          ),
+                          const CustomText(text: 'Url'),
+                          CustomTextFeild(
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'this feild is required';
+                              } else {
+                                return null;
+                              }
+                            },
+                            hintText: 'Website Url',
+                            onChange: (val) {
+                              url = val;
+                              // log(title!);
+                            },
+                          ),
+                          const CustomText(text: 'email'),
+                          CustomTextFeild(
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'this feild is required';
+                              } else {
+                                return null;
+                              }
+                            },
+                            hintText: 'example@mail.com',
+                            onChange: (val) {
+                              email = val;
+                              // log(email!);
+                            },
+                          ),
+                          const CustomText(text: 'user_name'),
+                          CustomTextFeild(
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'this feild is required';
+                              } else {
+                                return null;
+                              }
+                            },
+                            hintText: 'user_name',
+                            onChange: (val) {
+                              userName = val;
+                              // log(userName!);
+                            },
+                          ),
+                          const CustomText(text: 'password'),
+                          CustomTextFeild(
+                            controller: passControler,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'this feild is required';
+                              } else {
+                                return null;
+                              }
+                            },
+                            hintText: 'password',
+                            onChange: (val) {
+                              pass = val;
+                              // log(title!);
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        GestureDetector(
+                          behavior: HitTestBehavior.translucent,
+                          onTap: () {
+                            passControler.text = generatePassword();
+                          },
+                          child: Container(
+                            alignment: Alignment.center,
+                            height: 40,
+                            width: 150,
+                            decoration: BoxDecoration(
+                                border:
+                                    Border.all(color: kPrimaryColor, width: 2),
+                                borderRadius: BorderRadius.circular(10)),
+                            child: const CustomText(
+                              text: 'GENRATE NEW',
+                              fontWeight: FontWeight.bold,
+                              textColor: kPrimaryColor,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      pickImage();
-                    },
-                    child: Container(
-                      height: 80,
-                      width: 80,
-                      decoration: BoxDecoration(
-                        border: Border.all(),
-                        color: Colors.grey,
-                      ),
-                      child: selectedImage != null
-                          ? Image.file(
-                              selectedImage!,
-                              fit: BoxFit.cover,
-                            )
-                          : const Icon(Icons.add),
+                      ],
                     ),
-                  ),
-                  CustomButton(
-                    text: 'ADD PASSWORD',
-                    onTaP: () async {
-                      if (_formKey.currentState!.validate()) {
-                        PasswordModel passwordModel = PasswordModel(
-                          title: title!,
-                          password: pass!,
-                          email: email!,
-                          userName: userName!,
-                          url: url,
-                          image: ImageModel(
-                              imageData: await fileToUint8List(selectedImage!)),
-                        );
-                        if (context.mounted) {
-                          BlocProvider.of<AddPasswordCubit>(context)
-                              .addPassword(passwordModel);
+                    // const SizedBox(
+                    //   height: 10,
+                    // ),
+                      const CustomText(text: 'Pick an Image'),
+                    GestureDetector(
+                      onTap: () {
+                        pickImage();
+                      },
+                      child: Row(
+                        children: [
+                          Container(
+                            height: 80,
+                            width: 80,
+                            decoration: BoxDecoration(
+                              border: Border.all(),
+                              color: Colors.grey,
+                            ),
+                            child: selectedImage != null
+                                ? Image.file(
+                                    selectedImage!,
+                                    fit: BoxFit.cover,
+                                  )
+                                : const Icon(Icons.add),
+                          ),
+                        ],
+                      ),
+                    ),
+                    CustomButton(
+                      text: 'ADD PASSWORD',
+                      onTaP: () async {
+                        if (_formKey.currentState!.validate()) {
+                          PasswordModel passwordModel = PasswordModel(
+                            title: title!,
+                            password:passControler.text.isEmpty?pass!:passControler.text,
+                            email: email!,
+                            userName: userName!,
+                            url: url,
+                            image: ImageModel(
+                                imageData:
+                                    await fileToUint8List(selectedImage!)),
+                          );
+                          if (context.mounted) {
+                            BlocProvider.of<AddPasswordCubit>(context)
+                                .addPassword(passwordModel);
+                          }
                         }
-                      }
-                    },
-                  ),
-                ],
+                      },
+                    ),
+                  ],
+                ),
               );
             },
           ),
