@@ -1,5 +1,5 @@
-import 'dart:developer';
 import 'dart:io';
+import 'dart:math';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
@@ -26,10 +26,17 @@ class _AddPasswordScreenState extends State<AddPasswordScreen> {
   String? title, pass, email, url, userName;
   final _formKey = GlobalKey<FormState>();
   File? selectedImage;
+  final passControler = TextEditingController();
 
   @override
   void initState() {
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    passControler.dispose();
+    super.dispose();
   }
 
   @override
@@ -54,9 +61,7 @@ class _AddPasswordScreenState extends State<AddPasswordScreen> {
                 BlocProvider.of<ShowPasswordCubit>(context).showpassword();
                 Navigator.pop(context);
               }
-              if (state is AddPasswordFailure) {
-                log(state.errMessage.toString());
-              }
+              if (state is AddPasswordFailure) {}
             },
             builder: (context, state) {
               return Column(
@@ -140,6 +145,7 @@ class _AddPasswordScreenState extends State<AddPasswordScreen> {
                         ),
                         const CustomText(text: 'password'),
                         CustomTextFeild(
+                          controller: passControler,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return 'this feild is required';
@@ -161,7 +167,9 @@ class _AddPasswordScreenState extends State<AddPasswordScreen> {
                     children: [
                       GestureDetector(
                         behavior: HitTestBehavior.translucent,
-                        onTap: () {},
+                        onTap: () {
+                          passControler.text = generatePassword();
+                        },
                         child: Container(
                           alignment: Alignment.center,
                           height: 40,
@@ -241,5 +249,20 @@ class _AddPasswordScreenState extends State<AddPasswordScreen> {
     setState(() {
       selectedImage = File(returnedImage!.path);
     });
+  }
+
+  String generatePassword() {
+    const int length = 12;
+    const String upperCase = 'ABCDEFJKLMNOPQYXWZ';
+    const String lowerCase = 'abcdefjklmnopqyxwz';
+    const String numbers = '0123456789';
+    const String symbol = '!@#%^&*';
+    String chars = '';
+    chars += '$upperCase$numbers';
+    chars += symbol;
+    return List.generate(length, (index) {
+      final indexRandom = Random.secure().nextInt(chars.length);
+      return chars[indexRandom];
+    }).join('');
   }
 }

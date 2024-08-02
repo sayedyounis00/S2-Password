@@ -6,12 +6,13 @@ class CustomTextFeild extends StatelessWidget {
     required this.hintText,
     this.topPadding,
     this.prefixIcon,
-    this.onChange, this.validator,
+    this.onChange, this.validator,  this.controller,
   });
   final String hintText;
   final double? topPadding;
   final Widget? prefixIcon;
   final Function(String?)? onChange;
+  final TextEditingController? controller;
   final String? Function(String?)?  validator;
   @override
   Widget build(BuildContext context) {
@@ -19,6 +20,7 @@ class CustomTextFeild extends StatelessWidget {
       padding: EdgeInsets.only(top: topPadding ?? 0,bottom: 10
       ),
       child: TextFormField(
+        controller: controller,
         validator:validator,
         onChanged: onChange,
         decoration: InputDecoration(
