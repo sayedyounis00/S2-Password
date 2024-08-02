@@ -184,7 +184,7 @@ class _AddPasswordScreenState extends State<AddPasswordScreen> {
                   ),
                   GestureDetector(
                     onTap: () {
-                    //// _pickImage();
+                      pickImage();
                     },
                     child: Container(
                       height: 80,
@@ -193,17 +193,17 @@ class _AddPasswordScreenState extends State<AddPasswordScreen> {
                         border: Border.all(),
                         color: Colors.grey,
                       ),
-                     child: selectedImage != null
-                         ? Image.file(
-                             selectedImage!,
-                             fit: BoxFit.cover,
-                           )
-                         : const Icon(Icons.add),
+                      child: selectedImage != null
+                          ? Image.file(
+                              selectedImage!,
+                              fit: BoxFit.cover,
+                            )
+                          : const Icon(Icons.add),
                     ),
                   ),
                   CustomButton(
                     text: 'ADD PASSWORD',
-                    onTaP: () async{
+                    onTaP: () async {
                       if (_formKey.currentState!.validate()) {
                         PasswordModel passwordModel = PasswordModel(
                           title: title!,
@@ -211,10 +211,13 @@ class _AddPasswordScreenState extends State<AddPasswordScreen> {
                           email: email!,
                           userName: userName!,
                           url: url,
-                          image: ImageModel(imageData:await fileToUint8List(selectedImage!)),
+                          image: ImageModel(
+                              imageData: await fileToUint8List(selectedImage!)),
                         );
-                        BlocProvider.of<AddPasswordCubit>(context)
-                            .addPassword(passwordModel);
+                        if (context.mounted) {
+                          BlocProvider.of<AddPasswordCubit>(context)
+                              .addPassword(passwordModel);
+                        }
                       }
                     },
                   ),
@@ -228,16 +231,15 @@ class _AddPasswordScreenState extends State<AddPasswordScreen> {
   }
 
 // Function to convert File to Uint8List
-Future<Uint8List> fileToUint8List(File file) async {
-  return await file.readAsBytes();
-}
+  Future<Uint8List> fileToUint8List(File file) async {
+    return await file.readAsBytes();
+  }
 
-  Future _pickImage() async {
+  Future pickImage() async {
     var returnedImage =
         await ImagePicker().pickImage(source: ImageSource.gallery);
     setState(() {
       selectedImage = File(returnedImage!.path);
     });
   }
-
 }
