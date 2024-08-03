@@ -31,6 +31,7 @@ dependencies:
   build_runner: ^2.4.11
   circle_nav_bar: ^2.0.1+1
   cupertino_icons: ^1.0.6
+  firebase_auth: ^5.1.3
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.6
@@ -67,13 +68,13 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
+  fonts:
+    - family: DancingScript
+      fonts:
+        - asset: assets/fonts/DancingScript-Medium.ttf 
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf

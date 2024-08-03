@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1068369092202",
+    "project_id": "password-saver-b61a6",
+    "storage_bucket": "password-saver-b61a6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1068369092202:android:a71376e1332b1129193413",
+        "android_client_info": {
+          "package_name": "com.example.password_saver"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUJ1f2_PIXEKzq35YK7YGDvtOcRIdzDtk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
