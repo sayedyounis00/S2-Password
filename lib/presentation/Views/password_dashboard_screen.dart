@@ -17,6 +17,9 @@ class PasswordDashBoard extends StatefulWidget {
 }
 
 class _PasswordDashBoardState extends State<PasswordDashBoard> {
+  late List<PasswordModel> notesList;
+  late List<PasswordModel> filteredList;
+  final formControler=TextEditingController();
   @override
   void initState() {
     super.initState();
@@ -100,16 +103,15 @@ class _PasswordDashBoardState extends State<PasswordDashBoard> {
       ),
       body: BlocBuilder<ShowPasswordCubit, ShowPasswordState>(
         builder: (context, state) {
-          List<PasswordModel> notesList =
-              BlocProvider.of<ShowPasswordCubit>(context).notes;
+          notesList = BlocProvider.of<ShowPasswordCubit>(context).notes;
           return Padding(
             padding: const EdgeInsets.all(16.0),
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                   Row(
+                  Row(
                     children: [
-                       CustomCounterCard(
+                      CustomCounterCard(
                         topText: '${notesList.length}',
                         underText: 'Password Stroed',
                       ),
@@ -122,18 +124,22 @@ class _PasswordDashBoardState extends State<PasswordDashBoard> {
                       ),
                     ],
                   ),
-                  const CustomTextFeild(
+                  CustomTextFeild(
+                    controller:formControler ,
+                    onChange: (val) {
+                      passTosearch(val);
+                    },
                     hintText: 'Search For Password..',
                     topPadding: 10,
-                    prefixIcon: Icon(Icons.search),
+                    prefixIcon: const Icon(Icons.search),
                   ),
                   ListView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
-                    itemCount: notesList.length,
+                    itemCount: formControler.text.isEmpty? notesList.length:filteredList.length,
                     itemBuilder: (context, index) {
                       return CustomPasswordCard(
-                        password: notesList[index],
+                        password:formControler.text.isEmpty? notesList[index]:filteredList[index],
                       );
                     },
                   )
@@ -144,5 +150,12 @@ class _PasswordDashBoardState extends State<PasswordDashBoard> {
         },
       ),
     );
+  }
+
+  void passTosearch(value) {
+    filteredList = notesList
+        .where((password) => password.title.toLowerCase().contains(value))
+        .toList();
+    setState(() {});
   }
 }
