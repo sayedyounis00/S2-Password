@@ -265,7 +265,7 @@ class _AddPasswordScreenState extends State<AddPasswordScreen> {
   String generatePassword() {
     const int length = 12;
     const String upperCase = 'ABCDEFJKLMNOPQYXWZ';
-    const String lowerCase = 'abcdefjklmnopqyxwz';
+    // const String lowerCase = 'abcdefjklmnopqyxwz';
     const String numbers = '0123456789';
     const String symbol = '!@#%^&*';
     String chars = '';
